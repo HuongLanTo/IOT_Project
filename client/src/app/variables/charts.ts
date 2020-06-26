@@ -1,8 +1,10 @@
 import Chart from 'chart.js';
+import { noUndefined } from '@angular/compiler/src/util';
 //
 // Chart extension for making the bars rounded
 // Code from: https://codepen.io/jedtrow/full/ygRYgo
 //
+
 
 Chart.elements.Rectangle.prototype.draw = function() {
   var ctx = this._chart.ctx;
@@ -145,7 +147,8 @@ var colors = {
   },
   theme: {
     'default': '#172b4d',
-    'primary': '#5e72e4',
+    // 'primary': '#5e72e4',
+    'primary': 'red',
     'secondary': '#f4f5f7',
     'info': '#11cdef',
     'success': '#2dce89',
@@ -182,12 +185,12 @@ export function chartOptions() {
         },
         elements: {
           point: {
-            radius: 0,
+            radius: 3,
             backgroundColor: colors.theme['primary']
           },
           line: {
             tension: .4,
-            borderWidth: 4,
+            borderWidth: 2,
             borderColor: colors.theme['primary'],
             backgroundColor: colors.transparent,
             borderCapStyle: 'rounded'
@@ -231,11 +234,12 @@ export function chartOptions() {
   // yAxes
   Chart.scaleService.updateScaleDefaults('linear', {
     gridLines: {
+      display: true,
       borderDash: [2],
       borderDashOffset: [2],
       color: (mode == 'dark') ? colors.gray[900] : colors.gray[300],
-      drawBorder: false,
-      drawTicks: false,
+      drawBorder: true,
+      drawTicks: true,
       lineWidth: 0,
       zeroLineWidth: 0,
       zeroLineColor: (mode == 'dark') ? colors.gray[900] : colors.gray[300],
@@ -258,7 +262,7 @@ export function chartOptions() {
     gridLines: {
       drawBorder: false,
       drawOnChartArea: false,
-      drawTicks: false
+      drawTicks: true
     },
     ticks: {
       padding: 20
@@ -285,23 +289,33 @@ export const chartExample1 = {
     scales: {
       yAxes: [{
         gridLines: {
+          display: true,
           color: colors.gray[900],
-          zeroLineColor: colors.gray[900]
+          zeroLineColor: colors.gray[900],
+          borderDash: [],
+          zeroLineBorderDash: []
         },
         ticks: {
+          // maxTicksLimit: 3,
           callback: function(value) {
             if (!(value % 10)) {
-              return '$' + value + 'k';
+              return value;
             }
           }
+        },
+        scaleLabel: {
+          display: true,
+          labelString: "",
+          fontFamily: "Montserrat",
+          fontColor: "black",
         }
       }]
-    }
+    },
   },
   data: {
     labels: ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
     datasets: [{
-      label: 'Performance',
+      label: '',
       data: [0, 20, 10, 30, 15, 40, 20, 60, 60]
     }]
   }

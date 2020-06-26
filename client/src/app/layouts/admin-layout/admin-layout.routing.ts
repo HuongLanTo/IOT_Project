@@ -39,12 +39,4 @@ export const AdminLayoutRoutes: Routes = [
         path: 'new-node',
         component: NewNodeComponent
     },
-    {
-        path: 'location',
-        component: LocationComponent
-    },
-    {
-        path: 'new-location',
-        component: NewLocationComponent
-    },
 ];

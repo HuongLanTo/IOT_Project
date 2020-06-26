@@ -1,60 +1,18 @@
-import { BaseService } from "./base.service";
 import { Injectable } from "@angular/core";
-import { Http } from "@angular/http";
-import { environment } from "src/environments/environment";
-import { Router } from "@angular/router";
-import { JwtHelperService } from '@auth0/angular-jwt';
-
+import { Http, Response } from "@angular/http";
+import 'rxjs/Rx';
 
 @Injectable({
     providedIn: 'root'
 })
-
-export class NodeService extends BaseService {
-    private API_URL = environment.apiUrl + 'node/'
-    
+export class NodeService {
     constructor(
-        protected http: Http,
-        public jwtHelperService: JwtHelperService,
-        private router: Router
-    ) {
-        super(http);
-    }
+        private http: Http
+    ) {}
+  
+    private API_URL = 'https://5ee4a4deddcea00016a36e04.mockapi.io/api/user';
 
-    getNodesList(filter: any, page: number, size: number): Promise<any> {
-        let option = Object.assign({}, this.options);
-        option.params = {
-          'filter': JSON.stringify(filter)
-        };    
-    
-        return new Promise((resolve, reject) => {
-          this.http.get(`${this.API_URL}?page=${page}&size=${size}`, option)
-          .toPromise()
-          .then(res => {
-            resolve(res.json())
-          })
-          .catch(err => console.log(err))
-        })
+    getNodes() {
+    return this.http.get(this.API_URL).map((r: Response) => r.json());
     }
-
-    createNode(user: any): Promise<boolean>{
-        return new Promise((resolve, reject) => {
-          this.http.post(this.API_URL + '/node', user)
-          .subscribe(res => {
-            resolve(true);
-          }, err => reject(err))
-        })
-    }
-
-    updateNodeInfo(id: string, nodeInfo){
-        let option = Object.assign({}, this.options);
-        return new Promise((resolve, reject) => {
-          this.http.put(this.API_URL + id, nodeInfo, option)
-          .toPromise()
-          .then(res => {
-            resolve(res.json())
-          })
-          .catch(err => reject(err))
-        })
-      }
 }

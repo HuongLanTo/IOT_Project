@@ -17,6 +17,7 @@ import { JwtHelperService, JWT_OPTIONS, JwtModule } from '@auth0/angular-jwt';
 import { LoginComponent } from './pages/login/login.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { HomeComponent } from './pages/home/home.component';
+import { MapComponent } from './pages/map/map.component';
 
 
 @NgModule({
@@ -36,11 +37,12 @@ import { HomeComponent } from './pages/home/home.component';
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
-    HomeComponent
+    HomeComponent,
+    MapComponent
   ],
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
-    JwtHelperService
+    // JwtHelperService
   ],
   bootstrap: [AppComponent]
 })

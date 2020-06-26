@@ -66,27 +66,21 @@
               </tr>
             </thead>
             <tbody>
-              <tr >
-                <td>1</td>
-                <td>Admin</td>
-                <td>{{ currentUser }}</td>
+              <tr *ngFor="let user of userList; let index=index">
+                <td>{{ index + 1 }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.username }}</td>
                 <td>
-                    <span class="badge badge-pill badge-success">Đang hoạt động</span>
-                    <!-- <span *ngIf="!user.active" class="badge badge-pill badge-danger">Dừng hoạt động</span> -->
+                    <span *ngIf="user.status" class="badge badge-pill badge-success">Đang hoạt động</span>
+                    <span *ngIf="!user.status" class="badge badge-pill badge-danger">Dừng hoạt động</span>
                 </td>
-                <td>admin</td>
+                <td>{{ user.role }}</td>
                 <td>
-                  <button class="btn btn-icon btn-sm btn-info" type="button" placement="top" ngbTooltip="Sửa"
-                    data-toggle="modal" data-target="#editModal"  >
+                  <button class="btn btn-icon btn-sm btn-info" type="button" placement="top" ngbTooltip="Sửa" data-toggle="modal" data-target="#editModal" (click)="currentUser=user">
                     <span class="btn-inner--icon"><i class="ni ni-single-copy-04"></i></span>
                   </button>
-                  <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
-                  <button
-                  class="btn btn-icon btn-sm btn-danger" style="margin-right: 8px;"
-                  type="button" placement="top" ngbTooltip="Xóa" data-toggle="modal"
-                  data-target="#editModalxoa" (click)="currentUser=user">
-                  <span class="btn-inner--icon"><i
-                      class="ni ni-fat-delete"></i></span>
+                  <button class="btn btn-icon btn-sm btn-danger" style="margin-right: 8px;" type="button" placement="top" ngbTooltip="Xóa" data-toggle="modal" data-target="#editModalxoa" (click)="currentUser=user">
+                    <span class="btn-inner--icon"><i class="ni ni-fat-delete"></i></span>
                 </button>
                 </td>
               </tr>
@@ -102,7 +96,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title">Cập nhật thông tin tài khoản</h3>
+        <h3 class="modal-title">Cập nhật thông tin người dùng</h3>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -111,9 +105,9 @@
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-              <label for="hocPhan">Username</label>
+              <label for="username">Username</label>
               <div class="form-group">
-                <input value="Admin" name="username" id="username" type="text" class="form-control" style="margin-top: 20px" readonly>
+                <input value="{{currentUser.username}}" name="username" id="username" type="text" class="form-control" style="margin-top: 20px" readonly>
               </div>
             </div>
           </div>

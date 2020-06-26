@@ -7,7 +7,7 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnChanges, OnInit, OnDestroy {
+export class LoginComponent implements OnInit {
   public username: string;
   public password: string;
 
@@ -16,23 +16,21 @@ export class LoginComponent implements OnChanges, OnInit, OnDestroy {
     public router: Router
   ) {}
 
-  ngOnChanges() {}
 
   ngOnInit() {
-    if (this.authService.isAuthenticated()) {
-      this.router.navigate(['']);
-    }
+  //   if (this.authService.isAuthenticated()) {
+  //     this.router.navigate(['']);
+  //   }
+  // }
   }
-  
-  ngOnDestroy() {
-  }
+ 
 
-  login() {
-    var userLogin = {
-      username: this.username,
-      password: this.password
-    }
-    this.authService.login(userLogin);
-  }
+  // login() {
+  //   var userLogin = {
+  //     username: this.username,
+  //     password: this.password
+  //   }
+  //   this.authService.login(userLogin);
+  // }
 
 }

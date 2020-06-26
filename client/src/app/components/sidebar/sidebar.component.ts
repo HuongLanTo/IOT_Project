@@ -21,14 +21,14 @@ export const ROUTES: RouteInfo[] = [
     // { path: '/tables', title: 'Tables',  icon:'ni-bullet-list-67 text-red', class: '' },
     // { path: '/login', title: 'Login',  icon:'ni-key-25 text-info', class: '' },
     // { path: '/user', title: 'Register',  icon:'ni-circle-08 text-pink', class: '' }
-    {
-      path: 'Quản lý khu vực',
-      role: ['admin'],
-      subPath: [
-        { path: '/location', title: 'Danh sách', role: ['admin'], icon: 'ni ni-bullet-list-67' },
-        { path: '/new-location', title: 'Tạo mới', role: ['admin'], icon: 'ni ni-fat-add' },
-      ]
-    },
+    // {
+    //   path: 'Quản lý khu vực',
+    //   role: ['admin'],
+    //   subPath: [
+    //     { path: '/location', title: 'Danh sách', role: ['admin'], icon: 'ni ni-bullet-list-67' },
+    //     { path: '/new-location', title: 'Tạo mới', role: ['admin'], icon: 'ni ni-fat-add' },
+    //   ]
+    // },
 
     {
       path: 'Quản lý các node',

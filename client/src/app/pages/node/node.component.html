@@ -69,13 +69,13 @@
               </tr>
             </thead>
             <tbody>
-              <tr >
-                <td>1</td>
-                <td>Số 2 Nguyễn Xiển</td>
-                <td>Thanh Xuân</td>
+              <tr *ngFor="let node of nodeList; let index = index">
+                <td>{{ index + 1 }}</td>
+                <td>{{ node.nameNode }}</td>
+                <td>{{ node.location}}</td>
                 <td>
-                    <span class="badge badge-pill badge-success">Đang hoạt động</span>
-                    <!-- <span *ngIf="!user.active" class="badge badge-pill badge-danger">Dừng hoạt động</span> -->
+                    <span *ngIf="node.so2" class="badge badge-pill badge-success">Đang hoạt động</span>
+                    <span *ngIf="!node.so2" class="badge badge-pill badge-danger">Dừng hoạt động</span>
                 </td>
                 <td>
                     <span class="badge badge-pill badge-success">Đang hoạt động</span>
@@ -126,17 +126,17 @@
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-              <label for="hocPhan">Username</label>
+              <label for="hocPhan">Tên node</label>
               <div class="form-group">
-                <input value="Admin" name="username" id="username" type="text" class="form-control" style="margin-top: 20px" readonly>
+                <input value="Admin" name="nameNode" id="nameNode" type="text" class="form-control" style="margin-top: 20px" readonly>
               </div>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group" >
-              <label for="name">Họ tên <p style="display:inline-flex !important; color: red ">*</p></label>
+              <label for="address">Địa chỉ <p style="display:inline-flex !important; color: red ">*</p></label>
               <div class="form-group" [ngClass]="{'has-danger': isNameInvalid == false}">
-                <input  name="name" id="name" type="text"
+                <input  name="address" id="address" type="text"
                 [placeholder]="!isNameInvalid ? 'Họ tên không hợp lệ':'Họ tên'" class="form-control">
               </div>
             </div>
@@ -145,7 +145,7 @@
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-              <label for="role">Role</label>
+              <label for="role">Khu vực</label>
               <select  name="role" id="role" class="form-control">
                 <option value="" disabled selected hidden>admin</option>
                 <option >admin</option>
@@ -154,7 +154,7 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label for="email">Email</label>
+              <label for="email">Kinh độ</label>
               <input  name="email" id="email" type="text"
                 placeholder="Email" class="form-control">
             </div>
@@ -171,9 +171,9 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label for="moTa">Mô tả</label>
+              <label for="moTa">Vĩ độ</label>
               <input  name="moTa" id="moTa" type="text"
-                placeholder="Mô tả" class="form-control">
+                placeholder="Vĩ độ" class="form-control">
             </div>
           </div>
         </div>
@@ -192,7 +192,7 @@
         </div>  
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal"
+          <button type="button" class="btn btn-default" data-dismiss="modal"
             (click)="updateUserInfo(currentUser)">Lưu</button>
         </div>
       </div>

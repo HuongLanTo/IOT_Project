@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NodeService } from '../../services/node.service';
 
 @Component({
   selector: 'app-node',
@@ -6,10 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./node.component.css']
 })
 export class NodeComponent implements OnInit {
+  nodeList: string[];
 
-  constructor() { }
+  constructor(
+    private nodeService: NodeService
+  ) { }
 
   ngOnInit(): void {
+    this.getNodeList();
+  }
+
+  getNodeList() {
+    this.nodeService.getNodes().subscribe(data => {
+      console.log(data);
+      this.nodeList = data;
+    })
   }
 
 }

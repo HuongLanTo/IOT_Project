@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Http, Response } from '@angular/http';
+import 'rxjs/Rx';
+import { AuthService } from 'src/app/services/auth.service';
+
 
 @Component({
   selector: 'app-user',
@@ -8,13 +12,25 @@ import { Component, OnInit } from '@angular/core';
 export class UserComponent implements OnInit {
   public userList: any;
   public filter = {}
-  public currentUser = 'lan';
+  public currentUser={};
   private currentPage: number = 1;
-  private show
+  private show;
   
-  constructor() { }
+  constructor(
+    private http: Http,
+    private authService: AuthService
+  ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.getUserList();
+  }
+
+
+  getUserList() {
+    this.authService.getUsers().subscribe(data => {
+      console.log(data);
+      this.userList = data;
+    })
   }
 
 }
